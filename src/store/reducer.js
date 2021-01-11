@@ -5,8 +5,10 @@ export const reducer = (state, action) => {
     //   case 'CHANGE_INPUT':
     //     return StateHelpers.inputChanged(state, action.value);
 
+      case 'CHANGE_STEP':
+        return actions.changeStep(state, action.value);
+
       case 'INITIALIZE':
-        console.log(actions.initializeData(state))
         return actions.initializeData(state);
           
       default:

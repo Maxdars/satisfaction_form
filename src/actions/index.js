@@ -20,3 +20,19 @@ export const initializeData = (state) => {
 
     return Object.assign({}, state, newState);
 }
+
+export const changeStep = (state, value) => {
+    switch(value) {
+        case('+1'):
+            return Object.assign({}, state, {'step': state.step + 1}); 
+            break;
+
+        case('-1'):
+            return Object.assign({}, state, {'step': state.step - 1}); 
+            break;
+        
+        default:
+            return state;
+
+    }
+}

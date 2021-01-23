@@ -19,7 +19,7 @@ let values = props.values;
                                 register = {props.register} 
                                 errors = {props.errors}
                                 field_config = {field}
-                                value = {_find(props.values, (item) => {return item.name === field.name}) ? _find(props.values, (item) => {return item.name === field.name}).value : ''}
+                                value = {_find(values, (item) => {return item.name === field.name}) ? _find(values, (item) => {return item.name === field.name}).value : ''}
                             />
                         </div>
                     )

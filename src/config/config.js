@@ -58,7 +58,30 @@ export const config = [
             {
                 'type': 'textfield',
                 'name': 'email',
-                'placeholder': 'Last name',
+                'placeholder': 'Email',
+                'validation': {
+                    'required': true,
+                    'minLength': 4
+                }
+            }
+        ]
+    },
+    {
+        'title': 'Step 3',
+        'fields': [
+            {
+                'type': 'textfield',
+                'name': 'phone',
+                'placeholder': 'Phone',
+                'validation': {
+                    'required': true,
+                    'minLength': 4
+                }
+            },
+            {
+                'type': 'textfield',
+                'name': 'address',
+                'placeholder': 'Address',
                 'validation': {
                     'required': true,
                     'minLength': 4

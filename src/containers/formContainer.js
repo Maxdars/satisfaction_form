@@ -1,13 +1,16 @@
 import React, { useEffect, useContext } from 'react';
 import { store } from '../store'
 import { useForm } from "react-hook-form";
+import '../config/firebase';
 
 // Containers.
 import FormStepContainer from './formStepContainer';
 
 const FormContainer = (props) => {
     const { state, dispatch } = useContext(store);
-    const { register, handleSubmit, errors, reset } = useForm();
+    const { register, handleSubmit, errors, reset } = useForm({
+        mode: 'onBlur'
+    });
 
     // Submit handlers.
     const onReset = (e) => { dispatch({type: 'RESET', value: {}}) }
@@ -36,29 +39,47 @@ const FormContainer = (props) => {
         dispatch({type: 'INITIALIZE', value: {}});
     }, [])
 
+    let steps_count = state.config.length;
     let step_config = state.config[state.step - 1];
     let current_step = state.step;
 
-    // @todo: check which submit should be visible in the current step.
-    let submit = [
-        <input type="submit" value="Next" data-submit-type="next_step"/>,
-        <input type="submit" value="Previous" data-submit-type="previous_step"/>,
-        <input type="submit" value="Save" data-submit-type="send_data"/>
-    ]
+    // Check which submit should be visible in the current step.
+    let submit = [];
+    if (current_step === steps_count) {
+        submit = [
+            <>
+                <input type="submit" value="Previous" data-submit-type="previous_step"/>
+                <input type="submit" value="Save" data-submit-type="send_data"/>
+            </>
+        ];
+    }
+    else if (current_step === 1) {
+        submit = [
+            <input type="submit" value="Next" data-submit-type="next_step"/>
+        ];
+    }
+    else {
+        submit = [
+            <>
+                <input type="submit" value="Previous" data-submit-type="previous_step"/>
+                <input type="submit" value="Next" data-submit-type="next_step"/>
+            </>        
+        ];
+    }
 
     if (!state.done) {
         return (
             <>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="form-container">
-                    <h2> { `Step ${current_step}/${state.config.length}` } </h2>
+                    <h2> { `Step ${current_step}/${steps_count}` } </h2>
                     <div className="step-container">
                         <FormStepContainer register={register} errors={errors} step_config={step_config} values={state.values}/>
                     </div>
                 </div>
-                <input type="submit" value="Next" data-submit-type="next_step"/>
-                <input type="submit" value="Previous" data-submit-type="previous_step"/>
-                <input type="submit" value="Save" data-submit-type="send_data"/>
+                <div className="buttons-container">
+                    {submit}
+                </div>
             </form>
             </>
         )

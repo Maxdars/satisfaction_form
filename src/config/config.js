@@ -6,7 +6,7 @@ export const config = [
                 'type': 'radio',
                 'name': 'satisfaction',
                 'validation': {
-                    'required': true
+                    'required': 'This field is required.'
                 },
                 'values': [
                     {
@@ -30,7 +30,12 @@ export const config = [
                 'type': 'textarea',
                 'name': 'comment',
                 'placeholder': 'Want to leave a comment ?',
-                'validation': {}
+                'validation': {
+                    'minLength': {
+                        'value': 10,
+                        'message': 'You should write at least 10 characters.'
+                    }
+                }
             }
         ]
     },
@@ -42,8 +47,11 @@ export const config = [
                 'name': 'first_name',
                 'placeholder': 'First name',
                 'validation': {
-                    'required': true,
-                    'minLength': 4
+                    'required': 'The firstname is required.',
+                    'minLength': {
+                        'value': 3,
+                        'message': 'The firstname should be at least 3 characters long.'
+                    }
                 }
             },
             {
@@ -51,8 +59,11 @@ export const config = [
                 'name': 'last_name',
                 'placeholder': 'Last name',
                 'validation': {
-                    'required': true,
-                    'minLength': 4
+                    'required': 'The lastname is required.',
+                    'minLength': {
+                        'value': 3,
+                        'message': 'The lastname should be at least 3 characters long.'
+                    }
                 }
             },
             {
@@ -60,8 +71,11 @@ export const config = [
                 'name': 'email',
                 'placeholder': 'Email',
                 'validation': {
-                    'required': true,
-                    'minLength': 4
+                    'required': 'The email is required.',
+                    'pattern': {
+                        'value': /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/,
+                        'message': 'This email is not valid.'
+                    }
                 }
             }
         ]
@@ -74,8 +88,19 @@ export const config = [
                 'name': 'phone',
                 'placeholder': 'Phone',
                 'validation': {
-                    'required': true,
-                    'minLength': 4
+                    'required': 'The phone number is required.',
+                    'minLength': {
+                        'value': 8,
+                        'message': 'The phone number is too short'
+                    },
+                    'maxLength': {
+                        'value': 8,
+                        'message': 'The phone number is too big'
+                    },
+                    'pattern': {
+                        'value': /^[0-9]+$/,
+                        'message': 'The phone number should only contain numbers.'
+                    }
                 }
             },
             {
@@ -83,8 +108,11 @@ export const config = [
                 'name': 'address',
                 'placeholder': 'Address',
                 'validation': {
-                    'required': true,
-                    'minLength': 4
+                    'required': 'The address is required.',
+                    'minLength': {
+                        'value': 10,
+                        'message': 'The address should be at least 10 characters long.'
+                    }
                 }
             }
         ]

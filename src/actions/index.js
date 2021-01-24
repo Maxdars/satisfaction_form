@@ -1,3 +1,5 @@
+import {firebaseDB} from '../config/firebase';
+
 /**
  * Initiliazing data action handler.
  */
@@ -69,6 +71,8 @@ export const sendData = (state, value) => {
         'done': true           
     }); 
 
+    addSubmission(updated_state.values)
+
     return updated_state;
 }
 
@@ -83,4 +87,38 @@ const getUpdatedValues = (data, values) => {
         }
         return item;
     })
+}
+
+/**
+ * Helper function.
+ * Add a new submission to database.
+ */
+const addSubmission = (data) => {
+    let dataObj = {};
+
+    data.forEach((item) => {
+        dataObj[item.name] = item.value
+    })
+
+    firebaseDB.ref('submissions').push(dataObj);
+}
+
+/**
+ * Helper function.
+ * Retrieve the list of submissions from the database.
+ */
+const getSubmissions = (data) => {
+    firebaseDB.ref('submissions').once('value').then((snapshot) => {
+        let submissions = [];
+
+        snapshot.forEach((submissionData) => {
+            submissions.push({
+                id: submissionData.key,
+                ...submissionData.val()
+            })
+        })
+
+        console.log(submissions)
+    });
+
 }

@@ -1,6 +1,7 @@
 export const config = [
     {
-        'title': 'Step 1',
+        'title': 'Title 1',
+        'desc': 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
         'fields': [
             {
                 'type': 'radio',
@@ -40,8 +41,26 @@ export const config = [
         ]
     },
     {
-        'title': 'Step 2',
+        'title': 'Title 2',
+        'desc': 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
         'fields': [
+            {
+                'type': 'select',
+                'name': 'gender',
+                'validation': {
+                    'required': 'This field is required.'
+                },
+                'values': [
+                    {
+                        'value': 'male',
+                        'label': 'Male'
+                    },
+                    {
+                        'value': 'female',
+                        'label': 'Female'
+                    }
+                ]
+            },
             {
                 'type': 'textfield',
                 'name': 'first_name',
@@ -81,7 +100,8 @@ export const config = [
         ]
     },
     {
-        'title': 'Step 3',
+        'title': 'Title 3',
+        'desc': 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
         'fields': [
             {
                 'type': 'textfield',
@@ -90,12 +110,12 @@ export const config = [
                 'validation': {
                     'required': 'The phone number is required.',
                     'minLength': {
-                        'value': 8,
+                        'value': 10,
                         'message': 'The phone number is too short'
                     },
                     'maxLength': {
-                        'value': 8,
-                        'message': 'The phone number is too big'
+                        'value': 10,
+                        'message': 'The phone number is too long'
                     },
                     'pattern': {
                         'value': /^[0-9]+$/,
@@ -116,5 +136,5 @@ export const config = [
                 }
             }
         ]
-    }  
+    }
 ]

@@ -10,7 +10,12 @@ let values = props.values;
 
     return (
         <>
-            <h3>{step_title}</h3>
+            <h4 className="text-center text-3xl font-semibold mt-8 uppercase">
+                {step_title}
+            </h4>
+            <p className="text-center m-8 mb-20 italic">
+                {step.desc}
+            </p>
             {
                 fields.map((field, i) => {
                     return (

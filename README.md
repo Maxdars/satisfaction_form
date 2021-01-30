@@ -70,4 +70,4 @@ The config const defines the steps of the form, each element of the config array
 * Send data to firebase
 
 ## Screenshots
-![Screenshot_1](./screenshot.PNG)
+![Screenshot_1](./screenshot.png)

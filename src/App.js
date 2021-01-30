@@ -1,4 +1,5 @@
-import './App.css';
+import './assets/tailwind.css'
+import './assets/main.css'
 import { StateProvider } from './store';
 
 // Containers.
@@ -8,7 +9,7 @@ function App() {
 
   return (
     <StateProvider>
-      <div className="App">
+      <div className="h-full flex font-sans">
         <FormContainer />
       </div>
     </StateProvider>
